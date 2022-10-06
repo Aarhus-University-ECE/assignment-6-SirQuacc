@@ -3,6 +3,6 @@
 // File for sandboxing and trying out code
 int main(int argc, char **argv)
 {
-    printf("Hello");
+    printf("Hello there");
     return 0;
 }
