@@ -64,7 +64,7 @@ Below is the function itself, it can also be found in max.c
   {
       assert(size > 0);
       int highest = numbers[0]; // Initialize the "highest" variable as the first element in the given array to start.
-      for(int i = 1; i < size; i++){ // Run through the array from 0 -> n-1
+      for(int i = 1; i < size; i++){ // Run through the array from 1 -> n-1
         if(numbers[i] > highest) // Test whether the current slot in the array has a higher value than the current saved highest value.
           highest = numbers[i]; // If above is true, highest is reassigned as the value of the current spot in the array.
       }
@@ -83,7 +83,7 @@ Here is my diagram showing the list at the two /*show list here*/ places in the 
 The code is seen below and can be found in list.c
 \begin{lstlisting}
   int size(node *l){
-    assert(l!=NULL); // Same precond, inputs needs to exist
+    assert(l!=NULL); // Same precond, input needs to exist
     int count = 0; // Start counter for size at 0
     while(l->next!=NULL){ 
       l = l->next; //Progress through the list
@@ -110,6 +110,26 @@ The corrected function is below, and in list.c
 \end{lstlisting}
 \vspace{3cm}
 \includegraphics[width=\linewidth, keepaspectratio=true]{task33e}
+Below is my code for this function, it can of course also be found in list.c
+\begin{lstlisting}
+  int largest(node *l){
+    /*Excercise 3e) Add your code below.*/
+    assert(l!=NULL); //assert l is defined
+    if (l->next == NULL) return -1; //Return -1 if nothing is in the input list
+    node *p = l->next; //Create local pointer p, that points to the same as inputs next
+    int i = 0; //Counter variable
+    int *dataElements = malloc(sizeof(int) * size(l)); //Allocate memory for data elements in an int array of the same size as the input's length.
+    for(int i = 0; i < size(l); i++){
+      dataElements[i] = p->data; //Input current data into data array
+      if(p->next != NULL) p = p->next; //If not at final node, continue
+    }
+    int highest = max(dataElements, size(l)); // Call our max function to get the highest value in the int array of data.
+    return highest; 
+     /*pre: head points to the first, empty element. The last element's next is NULL. size(l>0)
+      post: returns the largest value of the list*/
+  }
+\end{lstlisting}
+
 
 \vspace{2pt}
 

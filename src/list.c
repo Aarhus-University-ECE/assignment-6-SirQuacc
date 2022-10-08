@@ -23,7 +23,7 @@ void add(node *head, int x){
 
 int size(node *l){
   // Excercise 3b)
-  assert(l!=NULL); // Same precond, inputs needs to exist
+  assert(l!=NULL); // Same precond, input needs to exist
   node *p = l;
   int count = 0; // Start counter for size at 0
   while(p->next!=NULL){ 
@@ -47,15 +47,15 @@ void printout(node *l) {
 int largest(node *l){
   /*Excercise 3e) Add your code below.*/
   assert(l!=NULL); //assert l is defined
-  if (l->next == NULL) return -1; //Nothing in the input list
-  node *p = l->next; //Create local pointer p, that points to the same as l
+  if (l->next == NULL) return -1; //Return -1 if nothing is in the input list
+  node *p = l->next; //Create local pointer p, that points to the same as inputs next
   int i = 0; //Counter variable
-  int *dataElements = malloc(sizeof(int) * size(l)); //Allocate memory for data elements in an array.
+  int *dataElements = malloc(sizeof(int) * size(l)); //Allocate memory for data elements in an int array of the same size as the input's length.
   for(int i = 0; i < size(l); i++){
     dataElements[i] = p->data; //Input current data into data array
     if(p->next != NULL) p = p->next; //If not at final node, continue
   }
-  int highest = max(dataElements, size(l));
+  int highest = max(dataElements, size(l)); // Call our max function to get the highest value in the int array of data.
   return highest; 
    /*pre: head points to the first, empty element. The last element's next is NULL. size(l>0)
     post: returns the largest value of the list*/
